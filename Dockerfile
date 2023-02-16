@@ -1,6 +1,7 @@
 FROM python
-WORKDIR /pythondir
-COPY . /pythondir
-EXPOSE 5000
+WORKDIR /Users/lakshmichinmoy/Desktop/Telecom
+COPY . /Users/lakshmichinmoy/Desktop/Telecom
+EXPOSE 8000
 RUN pip install -r requirements.txt
-CMD python Form_Enduser.py
+ENTRYPOINT ["python3"]
+CMD [Form_Enduser.py]

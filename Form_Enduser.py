@@ -81,7 +81,6 @@ def predict():
     with open('model_Cyaramar_scalar.pkl', 'rb') as f:
         scaler = pickle.load(f)
 
-
     X_scaled_row = scaler.transform(X)
 
     # Load the model from the file

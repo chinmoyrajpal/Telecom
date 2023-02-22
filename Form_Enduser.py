@@ -5,6 +5,8 @@ from sklearn.preprocessing import MinMaxScaler
 
 app = Flask(__name__)
 
+
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -78,13 +80,14 @@ def predict():
     # Concatenate the dataframes vertically and reindex the columns to match the order
     X = pd.concat([df1, X]).reindex(columns=df1.columns)
     X.fillna(0, inplace=True)
-    with open('model_Cyaramar_scalar.pkl', 'rb') as f:
+    with open('model_scalar.pkl', 'rb') as f:
         scaler = pickle.load(f)
+
 
     X_scaled_row = scaler.transform(X)
 
     # Load the model from the file
-    with open("model_Cyaramar_rf.pkl", "rb") as f:
+    with open("model_rf.pkl", "rb") as f:
         loaded_model = pickle.load(f)
 
     prediction_test = loaded_model.predict(X_scaled_row)
@@ -97,4 +100,4 @@ def predict():
     return render_template('prediction.html', prediction=Result_Text)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8000)
